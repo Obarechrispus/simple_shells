@@ -5,5 +5,5 @@
 #include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
-void prompt(void);
+
 #endif
