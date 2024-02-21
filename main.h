@@ -5,8 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <fcntl.h>
-
+int _main(int ac, char **argv);
 void prompt(void);
 
 #endif
