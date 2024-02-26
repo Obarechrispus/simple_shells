@@ -1,0 +1,47 @@
+#include "shell.h"
+
+/**
+ * get_parent_pid - Prints the PID of the parent process.
+ */
+void get_parent_pid(void)
+{
+    pid_t parent_pid;
+
+    parent_pid = getppid();
+    printf("%u\n", parent_pid);
+}
+
+/**
+ * print_pid - Prints the PID of the current process.
+ */
+void print_pid(void)
+{
+    pid_t my_pid;
+
+    my_pid = getpid();
+    printf("%u\n", my_pid);
+}
+
+/**
+ * print_arguments - Prints all arguments without using ac.
+ */
+void print_arguments(char **av)
+{
+    unsigned int i = 0;
+
+    while (av[i] != NULL)
+    {
+        printf("%s\n", av[i]);
+        i++;
+    }
+}
+
+int main(int ac, char **av)
+{
+    get_parent_pid();
+    print_pid();
+    print_arguments(av);
+
+    return (0);
+}
+
