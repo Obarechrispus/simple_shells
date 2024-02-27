@@ -6,7 +6,9 @@
  */
 void print_env_addresses(char **envp)
 {
+
     printf("Address of env: %p\n", envp);
     printf("Address of environ: %p\n", environ);
+    
 }
 

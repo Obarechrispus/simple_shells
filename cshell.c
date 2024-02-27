@@ -15,13 +15,13 @@ int main(void)
 		if (args[0] != NULL && strcmp(args[0], "exit") == 0)
 		{
 			/* Handle exit command */
-			free(line);
-			free(args);
+			/*free(line);
+			free(args);*/
 			exit(EXIT_SUCCESS);
 		}
 
-		free(line);
-		free(args);
+		/*free(line);
+		free(args);*/
 
 	} while (1);
 
@@ -42,7 +42,7 @@ char *read_line(void)
 		if (feof(stdin))
 		{
 			/* End of file (Ctrl+D) */
-			free(line);
+			/*free(line);*/
 			exit(EXIT_SUCCESS);
 		}
 		else
@@ -106,7 +106,7 @@ char **parse_line(char *line)
 
 int execute(char **args)
 {
-	char *command_path = find_command(args[0]);
+	char *command_path = 0; /* find_command(args[0]);*/
 	char **env = environ;
 	int status;
 
@@ -177,10 +177,10 @@ int execute(char **args)
  *
  * @command: The command to find.
  * Return: The full path of the command if found, NULL otherwise.
- */
+ 
 char *find_command(const char *command)
 {
-	/* Find the full path of a command using the PATH environment variable */
+	 Find the full path of a command using the PATH environment variable 
 	char *result = NULL;
 	char *path = getenv("PATH");
 	char *path_copy = strdup(path);
@@ -212,18 +212,18 @@ char *find_command(const char *command)
 		if (access(command_path, F_OK) == 0)
 		{
 			result = strdup(command_path);
-			free(command_path);
-			free(path_copy);
+			free(command_path);*/
+			/*free(path_copy);
 			break;
-			/*free(path_copy);  Free the copied path
-			return command_path;  Return the valid path*/
+			free(path_copy);  *Free the copied path
+			return command_path; * Return the valid path
 		}
 
-		free(command_path);/*Free the memory in case the path is not valid*/
+		*free(command_path);Free the memory in case the path is not valid
 		token = strtok(NULL, ":");
 	}
 
-	free(path_copy);/*Free the copied path if the command is not found*/
-	return result;/*Return NULL if the command is not found in any path*/
-}
+	free(path_copy);Free the copied path if the command is not found
+	return result;Return NULL if the command is not found in any path
+}*/
 

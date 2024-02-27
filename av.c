@@ -8,7 +8,7 @@
 int main(int ac, char **av)
 {
     unsigned int i;
-
+	(void)ac;
     i = 1;
     while (av[i])
     {

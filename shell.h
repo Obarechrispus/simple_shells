@@ -50,7 +50,7 @@ char *read_line(void);
 char **parse_line(char *line);
 int execute(char **args);
 extern char **environ;
-void print_environment(void)
+void print_environment(void);
 void print_env_addresses(char **envp);
 char *_getenv(const char *name);
 void print_path_directories(void);
@@ -58,7 +58,7 @@ typedef struct PathNode
 {
     char *directory;
     struct PathNode *next;
-} PathNode;
+}pathNode;
 
 char *find_command(const char *command);
 void build_path_linked_list(void);
