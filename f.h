@@ -13,6 +13,7 @@
  * run_shell - Main function to run the shell
  */
 void run_shell(void);
+extern char **environ;
 
 #endif /* F_H */
 
