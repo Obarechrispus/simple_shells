@@ -7,13 +7,14 @@
  * Return: 1 if the command exists, 0 otherwise
  */
 int *check_commands(char *command)
-{
+{	
     char *path;
     char *token;
     struct stat st;
     int found = 0;
-
-    path = _getenv("PATH");
+	(void)found;
+	(void)command;
+    path = getenv("PATH");
     token = strtok(path, ":");
     while (token != NULL)
     {
@@ -29,6 +30,6 @@ int *check_commands(char *command)
     }
 
     free(path);
-    return (found);
+    return (0);
 }
 

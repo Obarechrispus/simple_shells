@@ -40,5 +40,9 @@ char *_strdup(char *str);
 size_t _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 
+char *read_line(void);
+char **split_line(char *line);
+void shell_loop(void);
+int execute(char *command, char **args);
 #endif /* SHELL_H */
 
