@@ -1,34 +1,6 @@
 #include "f.h"
 
 /**
- * main - Simple shell program
- *
- * Return: Always 0.
- */
-int main(void)
-{
-	char *input;
-
-	while (1)
-	{
-		display_prompt();
-		input = read_input();
-		execute_command(input);
-		free(input);
-	}
-
-	return (0);
-}
-
-/**
- * display_prompt - Displays the shell prompt.
- */
-void display_prompt(void)
-{
-	printf("#cisfun$ ");
-}
-
-/**
  * read_input - Reads input from the user.
  *
  * Return: User input as a string.
@@ -64,6 +36,7 @@ void execute_command(char *command)
 	char **args = malloc(2 * sizeof(char *));
 	pid_t pid;
 	int status;
+	/*char *args[] = {command, NULL};*/
 
 	pid = fork();
 
@@ -84,12 +57,29 @@ void execute_command(char *command)
 		args[0] = command;
 		args[1] = NULL;
 
-		if (execve(command, args, NULL) == -1)
+		if (strcmp(command, "echo") == 0)
 		{
+			/*ifree(args);*/
+			execlp(command, command, NULL);
 			perror(command);
-			free(args);
 			exit(EXIT_FAILURE);
 		}
+		else
+		{
+
+		/*if (execve(command, args, NULL) == -1)
+		{
+			fprintf(stderr, "%s: command not found\n", command);
+			free(args);
+			exit(EXIT_FAILURE);
+		}*/
+			if (execvp(command, args) == -1)
+			{
+				fprintf(stderr, "%s: command not found\n", command);
+				exit(EXIT_FAILURE);
+			}
+		}
+		free(args);
 	}
 	else
 	{
