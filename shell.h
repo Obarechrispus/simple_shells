@@ -38,14 +38,17 @@ int execute(char *command, char **args);
 /* utilis.c */
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
-size_t _strlen(char *str);
-char *_strcpy(char *dest, char *src);
-
+size_t _strlen(char *st
 void shell_loop(void);
 
 char **split_line(char *line);
 
 char *read_line(void);
 
+
+char *read_line(void);
+char **split_line(char *line);
+void shell_loop(void);
+int execute(char *command, char **args);
 #endif /* SHELL_H */
 

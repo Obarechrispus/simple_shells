@@ -1,44 +1,43 @@
 #include "shell.h"
 
 /**
- * parse_line - Parse a command line into tokens
- * @line: The command line to parse
+ * parse_line - Tokenizes a line into an array of strings
+ * @line: The input command line
  *
- * Return: An array of tokens (strings)
+ * Return: An array of strings (tokens)
  */
 char **parse_line(char *line)
 {
-    char **tokens;
-    char *token;
+    int bufsize = BUFSIZE;
     int position = 0;
+    char **tokens = malloc(bufsize * sizeof(char *));
+    char *token;
 
-    tokens = malloc(BUFSIZE * sizeof(char *));
     if (!tokens)
     {
-        perror("Error");
+        perror("Allocation error");
         exit(EXIT_FAILURE);
     }
 
-    token = strtok(line, DELIMITERS);
+    token = strtok(line, " \t\r\n\a");
     while (token != NULL)
     {
         tokens[position] = token;
         position++;
 
-        if (position >= BUFSIZE)
+        if (position >= bufsize)
         {
-            BUFSIZE += BUFSIZE;
-            tokens = realloc(tokens, BUFSIZE * sizeof(char *));
+            bufsize += BUFSIZE;
+            tokens = realloc(tokens, bufsize * sizeof(char *));
             if (!tokens)
             {
-                perror("Error");
+                perror("Allocation error");
                 exit(EXIT_FAILURE);
             }
         }
 
-        token = strtok(NULL, DELIMITERS);
+        token = strtok(NULL, " \t\r\n\a");
     }
     tokens[position] = NULL;
-    return (tokens);
+    return tokens;
 }
-
